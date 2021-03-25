@@ -13,11 +13,11 @@ public class ProfielList {
     public ProfielList() {
     }
 
-    public int get(int i)
+    public Profile get(int i) //get index
     {
-       profielList.get(i);
-        return i;
+        return profielList.get(i);
     }
+
 
     public void addProfile(Profile profile) {
         profielList.add(profile);
@@ -37,7 +37,14 @@ public class ProfielList {
         return profielList.size();
     }
 
+    void allePatientenZien() {
+        System.out.println("PATIENTENLIJST ");
+        System.out.println("patient-Naam\tAchternaam \tLeeftijd\t Gewicht \tLengte \t BMI");
+        for (int i = 0; i < profielList.size(); i++) {
+            System.out.println(profielList.get(i).getVoorNaam() +"\t\t\t" + profielList.get(i).getAchterNaam() + "\t\t\t" + profielList.get(i).getLeeftijd() +
+                    "\t\t" + profielList.get(i).getGewicht() + "\t\t" + profielList.get(i).getLengte() + "\t\t" + profielList.get(i).getBmi());
 
+        }
 
-}
+}}
 

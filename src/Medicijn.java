@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Medicijn {
 
-    String medicijnNaam;
-    String Omschrijving;
-    String soort;
-    String dosering;
+    String medicijnNaam;//ilac ismi
+    String Omschrijving;//genel bilgisi
+    String soort;//cesit
+    String dosering;// doz
 
 
     Medicijn() {
@@ -64,7 +64,6 @@ public class Medicijn {
     public void setDosering(String dosering) {
         this.dosering = dosering;
     }
-
 
 }
 

@@ -12,7 +12,7 @@ public class Program  {
 
         ZorgApp zorgApp = new ZorgApp();
 
-        zorgApp.menuScherm();
+        zorgApp.inlogscherm();
 
 
     }

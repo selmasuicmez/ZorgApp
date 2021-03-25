@@ -1,15 +1,15 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class MedicijnLijst {
 
+    // Butun ilaclarin listesi
     Map<String, String> vasteMedicijnLijst = new HashMap<>();
 
-        MedicijnLijst(){
 
-        }
+    MedicijnLijst() {
 
+    }
+//listeye ilac ekle
     public void addMedicijnToVasteLijst() {
 
         Scanner scan = new Scanner(System.in);
@@ -28,11 +28,13 @@ public class MedicijnLijst {
 
 
             vasteMedicijnLijst.put(m.medicijnNaam, m.toString());
-            System.out.println("Het volgende medicijn is toegevoegd: \n"+m.toString());
+            System.out.println("Het volgende medicijn is toegevoegd: \n" + m.toString());
             System.out.println("Druk 'S' om te stoppen");
             System.out.println("Druk enter om verder te gaan ");
         }
-}
+    }
+
+    // ilaclarin tek tek bilgilerini gor
     public void getMedicijnInfo() {
         Scanner scan = new Scanner(System.in);
         String medicijnNaam = "";
@@ -47,11 +49,12 @@ public class MedicijnLijst {
             if (!medicijnNaam.equals("X")) {
                 System.out.println(result);
             }
-        } while(!medicijnNaam.equals("X"));
+        } while (!medicijnNaam.equals("X"));
 
     }
 
-    public  void verwijderMedicijnVasteMedicijnLijst() {
+    //listeden ilac sil
+    public void verwijderMedicijnVasteMedicijnLijst() {
         Scanner scan = new Scanner(System.in);
         String medicijnNaam = "";
 
@@ -61,31 +64,30 @@ public class MedicijnLijst {
             medicijnNaam = scan.nextLine();
 
             if (!medicijnNaam.equals("X")) {
-                String deTeVerwijderenMedicijn = (String)vasteMedicijnLijst.remove(medicijnNaam);
+                String deTeVerwijderenMedicijn = (String) vasteMedicijnLijst.remove(medicijnNaam);
 
 
-                System.out.println("Verwijderde medicijn : "+ deTeVerwijderenMedicijn);
+                System.out.println("Verwijderde medicijn : " + deTeVerwijderenMedicijn);
 
-                System.out.println("Nieuwe lijst is : "+ vasteMedicijnLijst);
+                System.out.println("Nieuwe lijst is : " + vasteMedicijnLijst);
             }
-        } while(!medicijnNaam.equals("X"));
+        } while (!medicijnNaam.equals("X"));
 
 
     }
-
-
+// butun ilaclari liste seklinde gor
     public void alleMedicijnentZien() {
 
         //FOR LOOP
         System.out.println("LIJST VAN ALLE MEDICIJNEN  ");
         for (Map.Entry me : vasteMedicijnLijst.entrySet()) {
             System.out.println("***************************************************************************************************************************************************************************************");
-            System.out.println("MEDICIJN NAAM: "+me.getKey()  + me.getValue());
+            System.out.println("MEDICIJN NAAM: " + me.getKey() + me.getValue());
         }
         System.out.println("***************************************************************************************************************************************************************************************");
     }
 
 
-
 }
+
 

@@ -1,29 +1,35 @@
-import java.io.IOException;
 import java.util.*;
 
 public class ZorgApp {
 
     Scanner scan = new Scanner(System.in);
+    Scanner switchChoice = new Scanner(System.in);
+
     private ProfielList profielList = new ProfielList();
     private MedicijnLijst medicijnLijst = new MedicijnLijst();
 
-    Profile profile = new Profile();
+    private String gebruikerNaam;//kullanici adi
+    private String paswoord;// pasword
+    private Profile profile;
+    private Profile patient;
+
     Medicijn medicijn = new Medicijn();
 
     public ZorgApp() {
-
-        Profile Selma = new Profile("Selma", "Suicmez", 38, 65.2, 1.75);
-        Profile Mevlut = new Profile("Mevlut", "Suicmez", 47, 75, 1.80);
-        Profile Maksud = new Profile("Maksud", "Suicmez", 13, 60, 1.68);
-        Profile Batuhan = new Profile("Batuhan", "Suicmez", 11, 55, 1.63);
-        Profile Semiha = new Profile("Semiha", "Suicmez", 7, 35, 1.30);
-        Profile Ahmed = new Profile("Ahmed", "Suicmez", 2, 25, 0.84);
+//profilListe hasta ekle
+        Profile Selma = new Profile("selma", "suicmez", "zorgverlener", "Selma", "Suicmez", 38, 65.2, 1.75);
+        Profile Mevlut = new Profile("mevlut", "suicmez", "patient", "Mevlut", "Suicmez", 47, 75, 1.80);
+        Profile Maksud = new Profile("maksud", "suicmez", "patient", "Maksud", "Suicmez", 13, 60, 1.68);
+        Profile Batuhan = new Profile("batuhan", "suicmez", "patient", "Batuhan", "Suicmez", 11, 55, 1.63);
+        Profile Semiha = new Profile("semiha", "suicmez", "patient", "Semiha", "Suicmez", 7, 35, 1.30);
+        Profile Ahmed = new Profile("ahmed", "suicmez", "patient", "Ahmed", "Suicmez", 2, 25, 0.84);
         profielList.profielList.add(Selma);
         profielList.profielList.add(Mevlut);
         profielList.profielList.add(Maksud);
         profielList.profielList.add(Batuhan);
         profielList.profielList.add(Ahmed);
         profielList.profielList.add(Semiha);
+        //ilaclari olustur
         Medicijn Paracetamol = new Medicijn("Paracetamol", "Bij verschillende soorten pijn, zoals: hoofdpijn, migraine, keelpijn, oorpijn, spierpijn, gewrichtspijn, menstruatieklachten en artrose (pijn doordat uw gewrichtskraakbeen dunner wordt). Ook bij koorts, griep en verkoudheid.", "Pijnstiller en koortsverlager", "Volwassenen mogen bij kortdurend gebruik 3 tot 4 keer per dag 1 tot 2 tabletten van 500 mg paracetamol gebruiken (niet langer dan 4 weken achter elkaar). Let op: Bij langdurig gebruik (langer dan 4 weken) mag u niet meer dan 5 keer per dag 1 tablet (geen 2) van 500 mg paracetamol gebruiken");
         Medicijn Daktarin = new Medicijn("Daktarin", "Het is te gebruiken bij schimmelinfecties van de huid, zoals voetschimmel, schimmelnagels en eikelontsteking. Het wordt ook gebruikt bij een aantal huidinfecties met bacteriën, zoals puistjes (acne). Het wordt ook gebruikt bij putjeszolen.", "antischimmelmiddel", "Daktarin maximaal 4x per dag");
         Medicijn Citalopram = new Medicijn("Citalopram", "Het regelt in de hersenen de hoeveelheid serotonine.Deze lichaamseigen stof speelt een rol bij emoties en stemmingen. SSRI's verbeteren de stemming en verminderen angsten. Artsen schrijven het voor bij depressie en bij angststoornissen, zoals een dwangstoornis, paniekstoornis, specifieke fobie en posttraumatische stressstoornis. Soms wordt citalopram ook gebruikt bij voortijdige zaadlozing.", "serotonineheropnameremmers ", "De aanbevolen dosering is 20 mg eenmaal daags. Zonodig kan de dosis worden verhoogd tot 40 mg eenmaal daags, of tot maximaal 60 mg per dag.");
@@ -42,7 +48,7 @@ public class ZorgApp {
         Medicijn Lorezapam = new Medicijn("Lorezapam", "Het werkt rustgevend, spierontspannend, vermindert angstgevoelens en beïnvloedt de overdracht van elektrische prikkels in de hersenen. Artsen schrijven het voor bij angstgevoelens en gespannenheid, paniekstoornissen, slapeloosheid, epilepsie, alcoholontwenning, misselijkheid en braken door chemotherapie en onrust.", "benzodiazepinen", ": De gebruikelijke dosering is afhankelijk van de aandoening: Volwassenen: 0,5 – 4 mg per dag Kinderen: 0,02 – 0,1 mg/kg lichaamsgewicht per dag De dagdosering wordt zo nodig verdeeld over meerdere toedieningen per dag. Wijze van innemen: Neem LORAZEPAM 0,5 mg tabletten met vloeistof, bijvoorbeeld water, in");
         Medicijn Losec = new Medicijn("Losec", "Het vermindert de aanmaak van zuur in de maag. Artsen schrijven het voor bij maagklachten, maag- en darmzweren en bij het syndroom van Zollinger-Ellison.", "Maagzuurremmer", "De aanbevolen dosering is 20 mg eenmaal daags. Voor de behandeling van zweren veroorzaakt door een Helicobacter pylori-infectie en om te voorkomen dat de zweren terugkeren: De aanbevolen dosering is 20 mg Losec tweemaal daags, gedurende 1 week.");
         Medicijn Rybelsus = new Medicijn("Rybelsus", "Deze zorgen ervoor dat de hoeveelheid insuline na een maaltijd beter op niveau is en dat het lichaam minder glucose (suiker) vrijzet. Artsen schrijven het voor bij diabetes mellitus (suikerziekte).", "incretine-achtige stoffen", "De startdosis semaglutide is 3 mg eenmaal daags gedurende één maand. Na één maand moet de dosering worden verhoogd naar een onderhoudsdosering van 7 mg eenmaal daags.");
-
+        //medicinList klastaki vasteMedicijnLijst ilac ekle
         medicijnLijst.vasteMedicijnLijst.put("Paracetamol", Paracetamol.toString());
         medicijnLijst.vasteMedicijnLijst.put("Daktarin", Daktarin.toString());
         medicijnLijst.vasteMedicijnLijst.put("Citalopram", Citalopram.toString());
@@ -50,7 +56,7 @@ public class ZorgApp {
         medicijnLijst.vasteMedicijnLijst.put("Baklofen", Baklofen.toString());
         medicijnLijst.vasteMedicijnLijst.put("Bonviva", Bonviva.toString());
         medicijnLijst.vasteMedicijnLijst.put("Cytomel", Cytomel.toString());
-
+//profillere ilac ekle
         Selma.addMedicijnPatientLijst(Paracetamol);
         Selma.addMedicijnPatientLijst(Lorezapam);
         Selma.addMedicijnPatientLijst(Kestine);
@@ -64,13 +70,14 @@ public class ZorgApp {
         Semiha.addMedicijnPatientLijst(Paracetamol);
         Ahmed.addMedicijnPatientLijst(Aprokam);
         Ahmed.addMedicijnPatientLijst(Broomhexine);
-
+// kilo kaydi olustur
         GewichtsRegistratie selma08032021 = new GewichtsRegistratie("08/3/2021", "7.00", "71.1");
         GewichtsRegistratie selma09032021 = new GewichtsRegistratie("09/3/2021", "7.00", "71.3");
         GewichtsRegistratie selma10032021 = new GewichtsRegistratie("10/3/2021", "7.00", "71.4");
         GewichtsRegistratie selma11032021 = new GewichtsRegistratie("11/3/2021", "7.00", "70.9");
         GewichtsRegistratie selma12032021 = new GewichtsRegistratie("12/3/2021", "7.00", "71.1");
         GewichtsRegistratie selma13032021 = new GewichtsRegistratie("13/3/2021", "7.00", "71.3");
+        // kilo kayitlari profile ekle
         Selma.addGewichtRegistratiePatientLijst(selma13032021);
         Selma.addGewichtRegistratiePatientLijst(selma12032021);
         Selma.addGewichtRegistratiePatientLijst(selma11032021);
@@ -80,242 +87,369 @@ public class ZorgApp {
 
     }
 
-    void menuScherm() throws IOException {
-        System.out.println("___________________________________________________________________");
-        System.out.println("Welcome bij de ZorgApp");
-        System.out.println("____________________________________________________________________");
-        System.out.println("Maak een keuze? ");
-        System.out.println("Bent u een zorgverlener toets 1 ");
-        System.out.println("Bent u een patient toets 2 ");
+    //menu sifreli giris
+    public Profile inlogscherm() {
+        do {
+            profile = null;
+            patient = null;
+            System.out.println("\nWelkom in de ZorgApp, dit is het inlogscherm.\n");
+            System.out.println("Wat is uw gebruikersnaam: ");
+            gebruikerNaam = scan.nextLine();
+            System.out.println("Wat is uw wachtwoord: ");
+            paswoord = scan.nextLine();
 
-        int keuze = scan.nextInt();
-        scan.useLocale(Locale.US);
+            for (int i = 0; i < profielList.sizeOf(); i++) {
+                if ((profielList.get(i).getGebruikersNaam().equals(gebruikerNaam) && (profielList.get(i).getPasWoord().equals(paswoord)))) {
+                    profile = profielList.get(i);
+                }
+            }
+            if (profile == null) {
+                System.out.print("Geen goede invoer.Probeer opnieuw");
+            }
+        } while (profile == null);
 
-        if (keuze == 1) {
-            menuZorgverlener();
+
+        if (profile != null) {
+            String functie = profile.getFunctie();
+            switch (functie) {
+
+                case "zorgverlener":
+
+                    menuZorgverlener(profile);
+
+                    break;
+                case "patient":
+
+                    menuPatient(profile);
+
+                    break;
+            }
         }
-        if (keuze == 2) {
-            menuPatient();
-        } else {
-            System.out.println("Geen goede invoer. Probeer het opnieuw");
-            menuScherm();
-        }
+        return profile;
     }
 
-    void menuZorgverlener() throws IOException {
-        Profile patient = new Profile();
-        Scanner readInput = new Scanner(System.in);
-        readInput.useLocale(Locale.US);
-        Scanner readChoice = new Scanner(System.in);
-        readChoice.useLocale(Locale.US);
+
+    // menu doktor
+    public void menuZorgverlener(Profile profile) {
         int choice = 0;
         do {
             System.out.println();
-            System.out.println("**********************************************");
-            System.out.println("Welkom zorgverlener");
-            System.out.println("**********************************************");
-            System.out.println("Maak een keuze");
+            System.out.println("***************************************************************************************************");
+            System.out.println("WELKOM ZORGVERLENER : " + profile.getVoorNaam() + profile.getAchterNaam());
+            System.out.println("**************************************************************************************************");
+            System.out.println("WAT WILT U DOEN? ");
 
             System.out.println("****************************************************************************************************");
-            System.out.println("***************** ONDERWERP  PATIENT  **************************************************************");
-            System.out.println("1-  Om een nieuwe patient toe te voegen");
-            System.out.println("2-  Om een patient te zoeken");
-            System.out.println("3-  Om patient gegevens te wijzigen");
-            System.out.println("4-  Om alle patienten te zien");
-            System.out.println("5-  Om een patient te verwijderen");
-            System.out.println("6-  Om medicijn aan patientLijst toe tevoegen");
-            System.out.println("7-  Om medicijnLijst van een specifieken patient te zien");
-            System.out.println("8-  Om een medicijn van patientLijst te verwijderen");
-            System.out.println("9-  Om gewichtregistratie aan patient toe te voegen");
-            System.out.println("10- Om gewichtsregistartie van patient te verwijderen");
-            System.out.println("11- Om alle gewichtsregistratie van patient te zien");
-            System.out.println("***************** ONDERWERP VASTE MEDICIJNEN LIJST  ******************************************************");
-            System.out.println("12- Om alle medicijnen te zien");
-            System.out.println("13- Om een specifieke medicijn te zoeken");
-            System.out.println("14- Om medicijn aan vastelijst toe te voegen");
-            System.out.println("15- Om medicijn van vastelijst te verwijderen");
+            System.out.println("***************** PATIENTEN DATABASE **************************************************************");
+            System.out.println("1-  Nieuwe patient toevoegen ");//hasta ekle
+            System.out.println("2-  Patient zoeken  ");//hasta ara
+            System.out.println("3-  Patient verwijderen  ");//hasta sil
+            System.out.println("4-  Alle patienten zien ");//tum hastalari gor
+            System.out.println("***************** VASTE MEDICIJNENLIJST DATABASE  ******************************************************");
+            System.out.println("5- Om alle medicijnen te zien");//database ilaclari gor
+            System.out.println("6- Om een specifieke medicijn te zoeken");//ilac bilgisi al
+            System.out.println("7- Om medicijn aan vastelijst toe te voegen");// ilac ekle
+            System.out.println("8- Om medicijn van vastelijst te verwijderen");//ilac sil
             System.out.println("*****************************************************************************************************");
-            System.out.println("16- Om terug te keren naar hoofmenu");
+            System.out.println("9- Om terug te keren naar hoofmenu");// inlog a geri don
 
 
-            choice = readChoice.nextInt();
+            choice = scan.nextInt();
 
             switch (choice) {
                 case 1:
 
-                    registerPatient();
+                    registerPatient();//yeni kayit
 
                     break;
                 case 2:
-                    gegevensInZien();
+                    zoekPatient(patient);//hasta ara
                     break;
                 case 3:
-                    profile.editPatient();
+                    //patient verwijderen// hastas sil
                     break;
 
                 case 4:
-                    allePatientenZien();
+                    profielList.allePatientenZien();//butun hastalari gor
                     break;
 
-                case 5://verwijderPatient
+                case 5:
+                    medicijnLijst.alleMedicijnentZien();//butun ilaclari gor
                     break;
 
-                case 6://profile.addMedicijnPatient();
+                case 6:
+                    medicijnLijst.getMedicijnInfo();//ilac bilgisi al
                     break;
-                case 7://profile.alleMedicijnenPatient();
+                case 7:
+                    medicijnLijst.addMedicijnToVasteLijst();//ilac database listesine ilac ekle
                     break;
-                case 8://profile.verwijderMedicijnPatient();
+                case 8:
+                    medicijnLijst.verwijderMedicijnVasteMedicijnLijst();//ilac sil
                     break;
                 case 9:
-                    profile.addGewichtRegistratiePatient();
-                    break;
-                case 10:
-                    profile.verwijderGewichtRegistratiePatient();
-                    break;
-                case 11:
-                    profile.alleGewichtRegistartiesvanPatient();
-                    break;
-                case 12:
-                    medicijnLijst.alleMedicijnentZien();
-                    break;
-                case 13:
-                    medicijnLijst.getMedicijnInfo();
-                    break;
-                case 14:
-                    medicijnLijst.addMedicijnToVasteLijst();
-                    break;
-                case 15:
-                    medicijnLijst.verwijderMedicijnVasteMedicijnLijst();
-                    break;
-                case 16:
-                    menuScherm();
+                    inlogscherm();//inloga geri don
                     break;
                 default:
                     System.out.println("***** FOUTE KEUZE!! Probeer opnieuw *******");
-                    menuZorgverlener();
+                    inlogscherm();// inloga don
                     break;
             }
         } while (choice != 0);
     }
 
-    void menuPatient() throws IOException {
-        char l;
+    //hasta ara
+    private Profile zoekPatient(Profile patient) {
+        profielList.allePatientenZien();
+        System.out.print("\nGeef het getal van uw keuze: ");
+        int choice = scan.nextInt();
+        choice = choice - 1;
+        patient = profielList.get(choice);
+
         do {
-            l = 'n';
+            System.out.println("Dit zijn de gegevens van: " + patient.getVoorNaam() + "\t" + patient.getAchterNaam());
+            System.out.println("Kies een optie voor patient: ");
+            System.out.println("********************** BEKIJKEN ********************************************");
+            System.out.println(" 1. Persoongegevens bekijken ");//hastanin bilgilerini gor
+            System.out.println(" 2. Medicatie bekijken");//hastanin ilaclarini gor
+            System.out.println(" 3. Gewichtsregistratie bekijken");// hastanin kilo kayitlarini gor
+            System.out.println("************************** WIJZIGEN ****************************************");
 
-            scan = new Scanner(System.in);
+            System.out.println(" 4. Wijzig voornaam");//hastanin ismini degistir
+            System.out.println(" 5. Wijzig achternaam");//hastanin soy ismini degistir
+            System.out.println(" 6. Wijzig leeftijd");//hastanin yasini degistir
+            System.out.println(" 7. Wijzig gewicht");//hastanin kilosunu degistir
+            System.out.println(" 8. Wijzig lengte");//hastanin boyunu degistir
+            //   System.out.println(" 9. Wijzig alle gegevens");//hastanin tum bilgilerini degistir
+            System.out.println("************************** TOEVOEGEN ****************************************");
+            System.out.println("10. Toevoegen medicatie");//hastanin profiline ilac ekle
+            System.out.println("11. Toevoegen gewichtregistratie");//hastanin profiline kilo kaydi ekle
+            System.out.println("************************** VERWIJDEREN ****************************************");
+            System.out.println("12. Verwijder patiënt");//hasta sil
+            System.out.println("13. Verwijder medicijn bij patiënt");//hastanin profilinden ilac sil
+            System.out.println("************************* PROGRAMMA BEEINDIGEN ********************************");
+            System.out.println("14. Terug naar de patiëntenlijst");
+            System.out.println("0.  Terug naar hoofmenu");
 
 
-            System.out.println("**********************************************");
-            System.out.println("Welkom patient");
-            System.out.println("**********************************************");
-            System.out.println("Maak een keuze");
-            System.out.println("1-Om gegevens inzien");
-            System.out.println("2-Om gegevens wijzigen");
-            System.out.println("3-Om terug te keren naar hoofmenu");
-            int num = scan.nextInt();
-            scan.useLocale(Locale.US);
+            int switchChoice = scan.nextInt();
+            switch (switchChoice) {
 
-            switch (num) {
                 case 1:
-                    gegevensInZien();
+                    patient.printProfiel();//hasta bilgileri gor
                     break;
                 case 2:
-                    profile.editPatient();
+                    // zie alle medicijnen patient
+                    // hastanin ilaclarini gor
                     break;
                 case 3:
-                    menuScherm();
+                    //zie alle gewichtregistratie patient.
+                    // Hastanin tum kilo kayitlari
                     break;
-                default:
-                    System.out.println("***** FOUTE KEUZE!! Probeer opnieuw *******");
-                    menuPatient();
-                    break;
-            }
-        } while (l == 'y');
 
+                case 4:
+                    patient.wijzigProfielVoornaam();
+                    break;
+
+                case 5:
+                    patient.wijzigProfielAchternaam();
+                    break;
+
+                case 6:
+                    patient.wijzigProfielLeeftijd();
+                    break;
+
+                case 7:
+                    patient.wijzigProfielGewicht();
+                    break;
+
+                case 8:
+                    patient.wijzigProfielLengte();
+                    break;
+                case 9:
+                    //wijzig alle gegevens//butun bilgileri degistir
+                    break;
+                case 10:
+                    //     addMedicinePatient(patient);
+                    // hastaya ilac ekle
+                    break;
+                case 11:
+                    // patient.addGewichtRegistratiePatient();
+                    //hastaya kilo kaydi ekle
+                    break;
+                case 12://verwijder patient
+                    // hasta sil
+                    break;
+                case 13:
+                    //verwijdermedicijn patient
+                    // hastanin listesinden ilac sil
+                    break;
+
+                case 14:
+                    menuZorgverlener(profile);
+                    break;
+                case 0:
+                    inlogscherm();
+                    break;
+
+
+                default:
+                    System.out.println("Probeer opnieuw. \n");
+            }
+        } while (choice != 0);
+        return patient;
+    }
+
+    // menu hasta
+    public Profile menuPatient(Profile profile) {
+        int choice = 0;
+        do {
+
+
+            System.out.println("Welkom : " + profile.getVoorNaam() + " Wat wilt u doen?");
+            System.out.println("********************* GEGEVENS INZIEN *******************************************");
+            System.out.println(" 1. Uw persoonlijke gegevens inzien ");//bilgilerimi gor
+            System.out.println(" 2. Uw medicijnen inzien");//ilaclarimi gor
+            System.out.println(" 3. Uw gewichtregistratie inzien");//kilo kayitlarimi gor
+            System.out.println("********************* GEGEVENS WIJZIGEN *************************************************************");
+            System.out.println(" 4. Uw leeftijd wijzigen.");//yasimi degistir
+            System.out.println(" 5. Uw gewicht wijzigen.");//kilomu degistir
+            System.out.println(" 6. Uw lengte wijzigen.");//boyumu degistir
+            System.out.println(" 7. Uw gebruikersnaam wijzigen");//kulanici adimi degistir
+            System.out.println(" 8. Uw wachtwoord wijzigen");//pasword umu degistir
+            System.out.println("******************** PROGRAMMA BEEINDIGEN *****************************************************************");
+            System.out.println(" 0. Terug naar login scherm");//inlog menuye git
+
+
+            choice = scan.nextInt();
+            switch (choice) {
+
+                case 1:
+                    System.out.println("Uw persoons gegevens: ");
+                    profile.printProfiel();//bilgileri print
+                    break;
+                case 2:
+                    //alle medicijnen van patient inzien
+                    // Hastanin butun ilaclarini gor
+                    break;
+                case 3://gewichtregistratie inzien
+                    // Hastanin kilo kayitlarini gor
+
+                    break;
+                case 4:
+                    profile.wijzigProfielLeeftijd();//hasta yas degistir
+                    break;
+                case 5:
+                    profile.wijzigProfielGewicht();//hasta kilo degistir
+                    break;
+
+                case 6:
+                    profile.wijzigProfielLengte();//hastanin boy degistir
+                    break;
+
+                case 7:
+                    profile.wijzigProfielGebruikerNaam();// hasta kullanici adi degistiriyor
+                    break;
+
+                case 8:
+                    profile.wijzigProfielPaswoord();//hasta pasword degistiriyor
+                    break;
+
+                case 0://hier krijg ik een fout melding// '0' a bastigimda hata veriyor
+                    System.out.println("Je gaat weer terug naar hoofdmenu");// inlog menu ye don
+                    inlogscherm();
+                    break;
+
+                default:
+                    System.out.println("Geen goede invoer probeer opnieuw");
+            }
+        } while (choice != 0);
+        return profile;
 
     }
 
-    void registerPatient() throws IOException {
+    //yeni hasta ekle
+    void registerPatient() {
+
         Scanner scan = new Scanner(System.in);
-
         Profile pr = new Profile();
-
-        System.out.println("Enter patient voornaam:");
+        System.out.println("Enter je voornaam:");//isim
         pr.setVoorNaam(scan.nextLine());
-        System.out.println("Enter patient achternaam:");
+        System.out.println("Enter je achternaam:");//soy isim
         pr.setAchterNaam(scan.nextLine());
-        System.out.println("Enter patient leeftijd:");
+        System.out.println("Enter je leeftijd:");//yas
         pr.setLeeftijd(scan.nextInt());
-        System.out.println("Enter patient gewicht:");
+        System.out.println("Enter je gewicht:");//kilo
         pr.setGewicht(scan.nextFloat());
         scan.useLocale(Locale.US);
-        System.out.println("Enter patient lengte");
+        System.out.println("Enter je lengte");//boy
         pr.setLengte(scan.nextFloat());
         scan.useLocale(Locale.US);
 
-        profielList.addProfile(pr);
+        profielList.addProfile(pr);//profielliste ekle
         System.out.println("*********************************************");
         System.out.println("*******PATIENT SUCCESFULL AANGEMAAKT*********");
         System.out.println("*********************************************");
         System.out.println("Zo staat patient geregistreert :\n" + pr);
     }
-
-    void gegevensInZien() throws IOException {
-        char l;
-        do {
-            l = 'n';
-
-            System.out.println("Toets naam in:");
-            scan = new Scanner(System.in);
-            String voorNaamPatient = scan.nextLine();
-            scan.useLocale(Locale.US);
-
-            for (int i = 0; i < profielList.sizeOf(); i++) {
-
-                if (voorNaamPatient.equals(profielList.profielList.get(i).getVoorNaam())) {
-
-                    System.out.println("PATIENT GEGEVENS: \nNaam : " + profielList.profielList.get(i).getVoorNaam() + "\nAchternaam: " +
-                            profielList.profielList.get(i).getAchterNaam() + "\nLeeftijd: " + profielList.profielList.get(i).getLeeftijd() + "\nLengte: " +
-                            profielList.profielList.get(i).getLengte() + "\nGewicht: " + profielList.profielList.get(i).getGewicht() + "\nBmi: " +
-                            profielList.profielList.get(i).getBmi() + "\nMedicijnLijst :\n" + profielList.profielList.get(i).getMcListPatient());
-                }
-            }
-            menuScherm();
-            scan = new Scanner(System.in);
-            l = scan.next().charAt(0);
-        } while (l == 'y');
-    }
-
-    void allePatientenZien() {
-        System.out.println("patient-Naam\tAchternaam \tLeeftijd\t Gewicht \tLengte \t BMI");
-        for (int i = 0; i < profielList.sizeOf(); i++) {
-            System.out.println(profielList.profielList.get(i).getVoorNaam() + "\t\t\t" + profielList.profielList.get(i).getAchterNaam() + "\t\t\t" + profielList.profielList.get(i).getLeeftijd() +
-                    "\t\t" + profielList.profielList.get(i).getGewicht() + "\t\t" + profielList.profielList.get(i).getLengte() + "\t\t" + profielList.profielList.get(i).getBmi());
-
-        }
-    }
-
-
-    public void verwijderPatient() {
-        Scanner scan = new Scanner(System.in);
-        String patientNaam = "";
-        String result = "";
-
-        do {
-            System.out.println("Enter medicijnnaam om te verwijderen!");
-            System.out.println("Enter 'X' om programmma te beeindigen");
-            patientNaam = scan.nextLine();
-            profielList.profielList.remove(patientNaam);
-            if (patientNaam.equals("X")) {
-            } else {
-                System.out.println(profielList.toString());
-                System.out.println("verwijderd van medicijnlijst");
-            }
-        } while (!patientNaam.equals("X"));
-
-    }
-
 }
+
+
+////hasta sil
+//    public void verwijderPatient() {
+//        Scanner scan = new Scanner(System.in);
+//        String patientNaam = "";
+//        String result = "";
+//
+//        do {
+//            System.out.println("Enter patient om te verwijderen!");
+//            System.out.println("Enter 'X' om programmma te beeindigen");
+//            patientNaam = scan.nextLine();
+//            profielList.profielList.remove(patientNaam);
+//            if (patientNaam.equals("X")) {
+//            } else {
+//                System.out.println(profielList.toString());
+//                System.out.println("verwijderd van profiellist");
+//            }
+//        } while (!patientNaam.equals("X"));
+
+
+// hastanin nutun ilaclarini gor
+//    void alleMedicijnenPatientZien() {
+//        System.out.println("Medicijn LIJST ");
+//        System.out.println("medicijn naam\t soort \t omshrijving\t dosering \t");
+//        for (int i = 0; i < medicijnLijst.mcList.size(); i++) {
+//
+//
+//            System.out.println(medicijnLijst.mcList.get(i).getMedicijnNaam() +"\t\t\t" + medicijnLijst.mcList.get(i).soort + "\t\t\t" + medicijnLijst.mcList.get(i).Omschrijving +
+//                    "\t\t" + medicijnLijst.mcList.get(i).dosering);
+
+
+//hastaya ilac ekle
+//    public void addMedicijnPatient(Medicijn medicijn) {
+//        Scanner scan = new Scanner(System.in);
+//        String medicijnNaam = "";
+//        for (String exit = ""; !exit.equals("S"); exit = scan.nextLine()) {
+//
+//
+//                    Medicijn m = new Medicijn();
+//                    System.out.println("Enter medicijn naam: ");
+//                    m.medicijnNaam = scan.nextLine();
+//                    System.out.println("Enter medicijn omschrijving:");
+//                    m.Omschrijving = scan.nextLine();
+//                    System.out.println("Enter medicijn soort");
+//                    m.soort = scan.nextLine();
+//                    System.out.println("Enter dosering");
+//                    m.dosering = scan.nextLine();
+//                    medicijnLijst.mcList.add(m);
+//
+//                    System.out.println("Toegevoegde medicijn :" + medicijnLijst.mcList.toString());
+//
+//                    System.out.println("Enter 'S' om te stoppen");
+//                    System.out.println("Druk enter om verder te gaan ");
+//                }
+//            }
+//        }
+
+
 
 
