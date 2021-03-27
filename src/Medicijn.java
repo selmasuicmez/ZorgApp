@@ -65,5 +65,11 @@ public class Medicijn {
         this.dosering = dosering;
     }
 
+    public void printInfo(){
+        System.out.println("Medicijn naam :"+ getMedicijnNaam());
+        System.out.println("Medicijn soort:"+ getSoort());
+        System.out.println("Medicijn omschrijving :"+ getOmschrijving());
+        System.out.println("Medicijn dosering:"+ getDosering());
+    }
 }
 

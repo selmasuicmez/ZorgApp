@@ -2,16 +2,59 @@ import java.util.*;
 
 public class ZorgApp {
 
+    /*
+    hasta doktor aplication u
+
+    DOKTOR
+    **********************************************
+    butun ilaclari gormek istiyor
+    hastalarin tumunu gormek istiyor
+    bir ilacin bilgisini gormek istiyor
+    ************************************
+    yeni bir hasta eklemek istiyor
+    hastalari tek tek bulmak istiyor
+    hastalara ilac eklemek istiyor
+    bir hastanin tum ilaclarini gormek istiyor
+    hastanin dosyasindan ilac silmek istiyor
+    *************************************************
+    hastanin ismini degistirmek istiyor
+    hastanin soy ismini degistirmek istiyor
+    hastanin yasini degistirmek istiyor
+    hastanin boyunu degistirmek istiyor
+    hastanin kilosunu degistirmek istiyor
+
+    ******************************************
+    hastanin tum kilo kayitlarini gormek istiyor
+    hastaya kilo kaydi eklemek istiyor
+    hastanin bir onceki kilo kaydina gore nekadar kilo alip almadigini CIZELGE olarak consolda gormek istiyor. (Kilosuna gore yildiz consola basabiliriz)
+
+    HASTA
+
+    kendi bilgilerini gormek istiyor
+    kilo kayitlarini gormek istiyor
+    ilaclarini gormek istiyor
+    *****************************************
+    yasini degistirmek istiyor
+    kilosunu degistirmek istiyor
+    boyunu degistirmek istiyor
+    kullanici adini degistirmek istiyor
+    sifresini degistirmek istiyor
+
+    BU HAFTADA
+    Doktor ve Hasta aplikasyonun dilini degistirebilmelidir. 3 dil secenekli seklinde olabilir
+     */
+
     Scanner scan = new Scanner(System.in);
     Scanner switchChoice = new Scanner(System.in);
 
-    private ProfielList profielList = new ProfielList();
+    private ProfielList profielList;
     private MedicijnLijst medicijnLijst = new MedicijnLijst();
+    private GewichtRegistraties gewichtRegistraties= new GewichtRegistraties();
 
     private String gebruikerNaam;//kullanici adi
     private String paswoord;// pasword
     private Profile profile;
-    private Profile patient;
+
 
     Medicijn medicijn = new Medicijn();
 
@@ -23,6 +66,7 @@ public class ZorgApp {
         Profile Batuhan = new Profile("batuhan", "suicmez", "patient", "Batuhan", "Suicmez", 11, 55, 1.63);
         Profile Semiha = new Profile("semiha", "suicmez", "patient", "Semiha", "Suicmez", 7, 35, 1.30);
         Profile Ahmed = new Profile("ahmed", "suicmez", "patient", "Ahmed", "Suicmez", 2, 25, 0.84);
+        profielList = new ProfielList();
         profielList.profielList.add(Selma);
         profielList.profielList.add(Mevlut);
         profielList.profielList.add(Maksud);
@@ -49,41 +93,39 @@ public class ZorgApp {
         Medicijn Losec = new Medicijn("Losec", "Het vermindert de aanmaak van zuur in de maag. Artsen schrijven het voor bij maagklachten, maag- en darmzweren en bij het syndroom van Zollinger-Ellison.", "Maagzuurremmer", "De aanbevolen dosering is 20 mg eenmaal daags. Voor de behandeling van zweren veroorzaakt door een Helicobacter pylori-infectie en om te voorkomen dat de zweren terugkeren: De aanbevolen dosering is 20 mg Losec tweemaal daags, gedurende 1 week.");
         Medicijn Rybelsus = new Medicijn("Rybelsus", "Deze zorgen ervoor dat de hoeveelheid insuline na een maaltijd beter op niveau is en dat het lichaam minder glucose (suiker) vrijzet. Artsen schrijven het voor bij diabetes mellitus (suikerziekte).", "incretine-achtige stoffen", "De startdosis semaglutide is 3 mg eenmaal daags gedurende één maand. Na één maand moet de dosering worden verhoogd naar een onderhoudsdosering van 7 mg eenmaal daags.");
         //medicinList klastaki vasteMedicijnLijst ilac ekle
-        medicijnLijst.vasteMedicijnLijst.put("Paracetamol", Paracetamol.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Daktarin", Daktarin.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Citalopram", Citalopram.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Aprokam", Aprokam.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Baklofen", Baklofen.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Bonviva", Bonviva.toString());
-        medicijnLijst.vasteMedicijnLijst.put("Cytomel", Cytomel.toString());
+        medicijnLijst.addMedicijn(Paracetamol);
+        medicijnLijst.addMedicijn(Daktarin);
+        medicijnLijst.addMedicijn(Citalopram);
+        medicijnLijst.addMedicijn(Aprokam);
+
 //profillere ilac ekle
-        Selma.addMedicijnPatientLijst(Paracetamol);
-        Selma.addMedicijnPatientLijst(Lorezapam);
-        Selma.addMedicijnPatientLijst(Kestine);
-        Mevlut.addMedicijnPatientLijst(Broomhexine);
-        Mevlut.addMedicijnPatientLijst(Hytrin);
-        Maksud.addMedicijnPatientLijst(Halaven);
-        Maksud.addMedicijnPatientLijst(Lactulose);
-        Batuhan.addMedicijnPatientLijst(Cytomel);
-        Batuhan.addMedicijnPatientLijst(Rybelsus);
-        Semiha.addMedicijnPatientLijst(Foster);
-        Semiha.addMedicijnPatientLijst(Paracetamol);
-        Ahmed.addMedicijnPatientLijst(Aprokam);
-        Ahmed.addMedicijnPatientLijst(Broomhexine);
+        Selma.addMedicijn(Paracetamol);
+        Selma.addMedicijn(Lorezapam);
+        Selma.addMedicijn(Kestine);
+        Mevlut.addMedicijn(Broomhexine);
+        Mevlut.addMedicijn(Hytrin);
+        Maksud.addMedicijn(Halaven);
+        Maksud.addMedicijn(Lactulose);
+        Batuhan.addMedicijn(Cytomel);
+        Batuhan.addMedicijn(Rybelsus);
+        Semiha.addMedicijn(Foster);
+        Semiha.addMedicijn(Paracetamol);
+        Ahmed.addMedicijn(Aprokam);
+        Ahmed.addMedicijn(Broomhexine);
 // kilo kaydi olustur
-        GewichtsRegistratie selma08032021 = new GewichtsRegistratie("08/3/2021", "7.00", "71.1");
-        GewichtsRegistratie selma09032021 = new GewichtsRegistratie("09/3/2021", "7.00", "71.3");
-        GewichtsRegistratie selma10032021 = new GewichtsRegistratie("10/3/2021", "7.00", "71.4");
-        GewichtsRegistratie selma11032021 = new GewichtsRegistratie("11/3/2021", "7.00", "70.9");
-        GewichtsRegistratie selma12032021 = new GewichtsRegistratie("12/3/2021", "7.00", "71.1");
-        GewichtsRegistratie selma13032021 = new GewichtsRegistratie("13/3/2021", "7.00", "71.3");
+        GewichtsRegistratie selma08032021 = new GewichtsRegistratie("08/3/2021", "7.00", 71.1);
+        GewichtsRegistratie selma09032021 = new GewichtsRegistratie("09/3/2021", "7.00", 71.3);
+        GewichtsRegistratie selma10032021 = new GewichtsRegistratie("10/3/2021", "7.00", 71.4);
+        GewichtsRegistratie selma11032021 = new GewichtsRegistratie("11/3/2021", "7.00", 70.9);
+        GewichtsRegistratie selma12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 71.1);
+        GewichtsRegistratie selma13032021 = new GewichtsRegistratie("13/3/2021", "7.00", 71.3);
         // kilo kayitlari profile ekle
-        Selma.addGewichtRegistratiePatientLijst(selma13032021);
-        Selma.addGewichtRegistratiePatientLijst(selma12032021);
-        Selma.addGewichtRegistratiePatientLijst(selma11032021);
-        Selma.addGewichtRegistratiePatientLijst(selma10032021);
-        Selma.addGewichtRegistratiePatientLijst(selma09032021);
-        Selma.addGewichtRegistratiePatientLijst(selma08032021);
+        Selma.addGewichtRegistratie(selma13032021);
+        Selma.addGewichtRegistratie(selma12032021);
+        Selma.addGewichtRegistratie(selma11032021);
+        Selma.addGewichtRegistratie(selma10032021);
+        Selma.addGewichtRegistratie(selma09032021);
+        Selma.addGewichtRegistratie(selma08032021);
 
     }
 
@@ -91,7 +133,6 @@ public class ZorgApp {
     public Profile inlogscherm() {
         do {
             profile = null;
-            patient = null;
             System.out.println("\nWelkom in de ZorgApp, dit is het inlogscherm.\n");
             System.out.println("Wat is uw gebruikersnaam: ");
             gebruikerNaam = scan.nextLine();
@@ -140,18 +181,16 @@ public class ZorgApp {
             System.out.println("WAT WILT U DOEN? ");
 
             System.out.println("****************************************************************************************************");
-            System.out.println("***************** PATIENTEN DATABASE **************************************************************");
+            System.out.println("***************** PATIENTEN **************************************************************");
             System.out.println("1-  Nieuwe patient toevoegen ");//hasta ekle
             System.out.println("2-  Patient zoeken  ");//hasta ara
             System.out.println("3-  Patient verwijderen  ");//hasta sil
             System.out.println("4-  Alle patienten zien ");//tum hastalari gor
             System.out.println("***************** VASTE MEDICIJNENLIJST DATABASE  ******************************************************");
-            System.out.println("5- Om alle medicijnen te zien");//database ilaclari gor
+            System.out.println("5- Om alle medicijnen te zien");//butun ilaclari gor
             System.out.println("6- Om een specifieke medicijn te zoeken");//ilac bilgisi al
-            System.out.println("7- Om medicijn aan vastelijst toe te voegen");// ilac ekle
-            System.out.println("8- Om medicijn van vastelijst te verwijderen");//ilac sil
             System.out.println("*****************************************************************************************************");
-            System.out.println("9- Om terug te keren naar hoofmenu");// inlog a geri don
+            System.out.println("7- Om terug te keren naar hoofmenu");// inlog a geri don
 
 
             choice = scan.nextInt();
@@ -163,30 +202,24 @@ public class ZorgApp {
 
                     break;
                 case 2:
-                    zoekPatient(patient);//hasta ara
+                    zoekPatient();//hasta ara
                     break;
                 case 3:
-                    //patient verwijderen// hastas sil
+                    //hasta sil
                     break;
 
                 case 4:
-                    profielList.allePatientenZien();//butun hastalari gor
+                    //tum hastalari gor
                     break;
 
                 case 5:
-                    medicijnLijst.alleMedicijnentZien();//butun ilaclari gor
+                    medicijnLijst.print();//butun ilaclari gor
                     break;
 
                 case 6:
-                    medicijnLijst.getMedicijnInfo();//ilac bilgisi al
+                  //ilac bilgisi al
                     break;
                 case 7:
-                    medicijnLijst.addMedicijnToVasteLijst();//ilac database listesine ilac ekle
-                    break;
-                case 8:
-                    medicijnLijst.verwijderMedicijnVasteMedicijnLijst();//ilac sil
-                    break;
-                case 9:
                     inlogscherm();//inloga geri don
                     break;
                 default:
@@ -198,12 +231,12 @@ public class ZorgApp {
     }
 
     //hasta ara
-    private Profile zoekPatient(Profile patient) {
-        profielList.allePatientenZien();
+    private Profile zoekPatient() {
+
         System.out.print("\nGeef het getal van uw keuze: ");
         int choice = scan.nextInt();
         choice = choice - 1;
-        patient = profielList.get(choice);
+        Profile patient = profielList.get(choice);
 
         do {
             System.out.println("Dit zijn de gegevens van: " + patient.getVoorNaam() + "\t" + patient.getAchterNaam());
@@ -219,12 +252,12 @@ public class ZorgApp {
             System.out.println(" 6. Wijzig leeftijd");//hastanin yasini degistir
             System.out.println(" 7. Wijzig gewicht");//hastanin kilosunu degistir
             System.out.println(" 8. Wijzig lengte");//hastanin boyunu degistir
-            //   System.out.println(" 9. Wijzig alle gegevens");//hastanin tum bilgilerini degistir
+
             System.out.println("************************** TOEVOEGEN ****************************************");
             System.out.println("10. Toevoegen medicatie");//hastanin profiline ilac ekle
             System.out.println("11. Toevoegen gewichtregistratie");//hastanin profiline kilo kaydi ekle
             System.out.println("************************** VERWIJDEREN ****************************************");
-            System.out.println("12. Verwijder patiënt");//hasta sil
+            System.out.println("12. Verwijder patiënt");//hasta sil// yukardaki doktor menu de de var. Buradakini kaldirip ordakini birakmak mi lazim bilmedim
             System.out.println("13. Verwijder medicijn bij patiënt");//hastanin profilinden ilac sil
             System.out.println("************************* PROGRAMMA BEEINDIGEN ********************************");
             System.out.println("14. Terug naar de patiëntenlijst");
@@ -247,37 +280,33 @@ public class ZorgApp {
                     break;
 
                 case 4:
-                    patient.wijzigProfielVoornaam();
+                    patient.wijzigProfielVoornaam();//ismi degistir
                     break;
 
                 case 5:
-                    patient.wijzigProfielAchternaam();
+                    patient.wijzigProfielAchternaam();//soy ismi degistir
                     break;
 
                 case 6:
-                    patient.wijzigProfielLeeftijd();
+                    patient.wijzigProfielLeeftijd();//yas degistir
                     break;
 
                 case 7:
-                    patient.wijzigProfielGewicht();
+                    patient.wijzigProfielGewicht();//kilo degistir
                     break;
 
                 case 8:
-                    patient.wijzigProfielLengte();
+                    patient.wijzigProfielLengte();//boy degistir
                     break;
-                case 9:
-                    //wijzig alle gegevens//butun bilgileri degistir
-                    break;
+
                 case 10:
-                    //     addMedicinePatient(patient);
                     // hastaya ilac ekle
                     break;
                 case 11:
-                    // patient.addGewichtRegistratiePatient();
                     //hastaya kilo kaydi ekle
                     break;
-                case 12://verwijder patient
-                    // hasta sil
+                case 12:
+                    // hasta sil//burda olurmu bilmiyorum
                     break;
                 case 13:
                     //verwijdermedicijn patient
@@ -329,9 +358,10 @@ public class ZorgApp {
                     break;
                 case 2:
                     //alle medicijnen van patient inzien
-                    // Hastanin butun ilaclarini gor
+                    // Hastanin tum ilaclarini gor
                     break;
-                case 3://gewichtregistratie inzien
+                case 3:
+                    //gewichtregistratie inzien
                     // Hastanin kilo kayitlarini gor
 
                     break;
@@ -391,27 +421,26 @@ public class ZorgApp {
         System.out.println("*********************************************");
         System.out.println("Zo staat patient geregistreert :\n" + pr);
     }
+    //yeni kilo kaydi
+    void registerGewicht() {
+
+        Scanner scan = new Scanner(System.in);
+        GewichtsRegistratie gw = new GewichtsRegistratie();
+        System.out.println("Enter datum :");//tarih
+        gw.setDatum(scan.nextLine());
+        System.out.println("Enter tijd:");//saat
+        gw.setTijd(scan.nextLine());
+        System.out.println("Enter gewicht:");//kilo
+        gw.setGewicht(scan.nextDouble());
+        scan.useLocale(Locale.US);
+
+        gewichtRegistraties.addGewichtRegistratie(gw);
+        System.out.println("*********************************************");
+        System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
+        System.out.println("*********************************************");
+        System.out.println("Zo staat gewicht geregistreert :\n" + gw);
+    }
 }
-
-
-////hasta sil
-//    public void verwijderPatient() {
-//        Scanner scan = new Scanner(System.in);
-//        String patientNaam = "";
-//        String result = "";
-//
-//        do {
-//            System.out.println("Enter patient om te verwijderen!");
-//            System.out.println("Enter 'X' om programmma te beeindigen");
-//            patientNaam = scan.nextLine();
-//            profielList.profielList.remove(patientNaam);
-//            if (patientNaam.equals("X")) {
-//            } else {
-//                System.out.println(profielList.toString());
-//                System.out.println("verwijderd van profiellist");
-//            }
-//        } while (!patientNaam.equals("X"));
-
 
 // hastanin nutun ilaclarini gor
 //    void alleMedicijnenPatientZien() {

@@ -4,14 +4,14 @@ public class GewichtsRegistratie {
 
     String datum;
     String tijd;
-    String gewicht;
+    double gewicht;
 
 
-    GewichtsRegistratie(){
+    GewichtsRegistratie() {
 
     }
 
-    public GewichtsRegistratie( String datum, String tijd, String gewicht) {
+    public GewichtsRegistratie(String datum, String tijd, double gewicht) {
 
         this.datum = datum;
         this.tijd = tijd;
@@ -35,19 +35,33 @@ public class GewichtsRegistratie {
         this.tijd = tijd;
     }
 
-    public String getGewicht() {
+    public double getGewicht() {
         return gewicht;
     }
 
-    public void setGewicht(String gewicht) {
+    public void setGewicht(double gewicht) {
         this.gewicht = gewicht;
     }
 
-    public void gewichtRegistratiePatient(){
+    public void printInfo() {
+        System.out.println("Datum :" + getDatum());
+        System.out.println("Tijd " + getDatum());
+        System.out.println("Gewicht " + getGewicht());
+    }
+//
+    public static String sterLijn(int nummerVanSterren) {
 
+        String sterren = "";
+        for (int i = 0; i < nummerVanSterren; i++) {
+            sterren = sterren + "*";
+        }
+        return sterren;
+    }
+//burada yildizlarla kilo kaydini gormek icin method
+        public void printSterren () {
+            System.out.println("TO DO");
+        }
     }
 
-
-}
 
 
