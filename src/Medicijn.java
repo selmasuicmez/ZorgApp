@@ -71,5 +71,6 @@ public class Medicijn {
         System.out.println("Medicijn omschrijving :"+ getOmschrijving());
         System.out.println("Medicijn dosering:"+ getDosering());
     }
+
 }
 

@@ -21,9 +21,10 @@ public class MedicijnLijst {
 // butun ilaclari liste seklinde gor
     public void print() {
         System.out.println("LIJST VAN ALLE MEDICIJNEN  ");
+        System.out.println();
+        System.out.println("NR.\tMEDICIJNNAAM\t\tMEDICIJNSOORT\t\t\t\t\t\t\tOMSCHRJVING\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tDOSERING");
         for (int i=0;i<lijst.size();i++){
-            System.out.print(i+". ");
-            System.out.println(lijst.get(i).getMedicijnNaam());
+            System.out.println(i+". "+lijst.get(i).getMedicijnNaam()+"\t\t "+lijst.get(i).getSoort()+"\t\t\t "+lijst.get(i).getOmschrijving()+"\t\t\t\t\t\t "+lijst.get(i).getDosering());
         }
 
     }

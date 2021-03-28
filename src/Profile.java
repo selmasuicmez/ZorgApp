@@ -66,7 +66,7 @@ public class Profile {
     public void verwijderMedicijn() {
         Scanner scan = new Scanner(System.in);
         mcList.print();
-        System.out.println("geef index");
+        System.out.println("Geef nummer van medicijn die je wilt verwijderen");
         int index = scan.nextInt();
 
         mcList.verwijderMedicijn(index);
@@ -234,105 +234,54 @@ public class Profile {
         System.out.println("Nieuwe wachtwoord is: " + getPasWoord());
     }
 
-    //hastanin tum bilgilerini birden degistir
-//    public void editPatient() {
-//        char l;
-//        Profile patient1 = new Profile(gebruikersNaam,pasWoord,functie,voorNaam, achterNaam, leeftijd, gewicht, lengte);
-//        Scanner scan = new Scanner(System.in);
-//        do {
-//            l = 'n';
-//            System.out.println("Voer de voornaam in van patient die je wil updaten :");
-//            String naam = scan.nextLine();
-//            scan = new Scanner(System.in);
-//            scan.useLocale(Locale.US);
-//
-//            for (int i = 0; i < pl.profielList.size(); i++) {
-//                if (naam.equals(pl.profielList.get(i).voorNaam)) {
-//
-//                    System.out.println("Welke gegevens wilt u updaten. Maak een keuze: ");
-//                    System.out.println("****************************************************************");
-//                    System.out.println("1- Leeftijd wijzigen");
-//                    System.out.println("2- Gewicht wijzigen");
-//                    System.out.println("3- Lengte wijzigen");
-//                    System.out.println("4- Terug naar hoofdmenu");
-//                    System.out.println("****************************************************************");
-//
-//                    int nummer = scan.nextInt();
-//
-//                    switch (nummer) {
-//
-//                        case 1:
-//                            System.out.println("voer nieuw patients leeftijd in:");
-//
-//                            patient1.leeftijd = scan.nextInt();
-//
-//                            patient1.voorNaam = pl.profielList.get(i).voorNaam;
-//                            patient1.achterNaam = pl.profielList.get(i).achterNaam;
-//                            patient1.lengte = pl.profielList.get(i).lengte;
-//                            patient1.gewicht = pl.profielList.get(i).gewicht;
-//
-//                            pl.profielList.set(i, patient1);
-//
-//                            System.out.println("Patient leeftijd gewijzigt !!!");
-//                            System.out.println(patient1);
-//                            break;
-//                        case 2:
-//                            System.out.println("Voer nieuw patients gewicht in:");
-//
-//                            patient1.gewicht = scan.nextFloat();
-//                            scan.useLocale(Locale.US);
-//
-//                            patient1.voorNaam = pl.profielList.get(i).voorNaam;
-//                            patient1.achterNaam = pl.profielList.get(i).achterNaam;
-//                            patient1.leeftijd = pl.profielList.get(i).leeftijd;
-//                            patient1.lengte = pl.profielList.get(i).lengte;
-//
-//                            pl.profielList.set(i, patient1);
-//
-//                            System.out.println("Patient gewicht gewijzigt !!!");
-//                            System.out.println(patient1);
-//                            break;
-//                        case 3:
-//                            System.out.println("Voer nieuw patients lengte in :");
-//
-//                            patient1.lengte = scan.nextFloat();
-//                            scan.useLocale(Locale.US);
-//
-//                            patient1.voorNaam = pl.profielList.get(i).voorNaam;
-//                            patient1.achterNaam = pl.profielList.get(i).achterNaam;
-//                            patient1.leeftijd = pl.profielList.get(i).leeftijd;
-//                            patient1.gewicht = pl.profielList.get(i).gewicht;
-//
-//                            pl.profielList.set(i, patient1);
-//
-//                            System.out.println("Patient lengte gewijzigt!!!");
-//                            System.out.println("Nieuwe gegevens  " + patient1);
-//                            break;
-//                        case 4:
-//                            //  menuScherm();
-//                        default:
-//                            System.out.println("Geen goede invoer");
-//                            break;
-//                    }
-//                }
-//            }
-//
-//            System.out.println("Wilt u verder gaan met updaten y/n.");
-//            System.out.println("Bij intoetsen van -- n --- gaat u terug naar hoofdmenu");
-//            l = scan.next().charAt(0);
-//            scan.useLocale(Locale.US);
-//        } while (l == 'y');
+    public void alleGewichtRegistraties() {
+        grLijst.print();
+    }
 
+    public void alleMedicaties() {
+        mcList.print();
+    }
 
-    //hastanin tum kilo kayitlari
-//    public void alleGewichtRegistratiesvanPatient() {
-//
-//        for (int i = 0; i < grLijst.size(); i++) {
-//            System.out.println("Datum " + "\t" + "Tijd " + "\t" + "Gewicht " + "\t" + "registratie " + "\t");
-//            System.out.println(grLijst.get(Integer.parseInt(Integer.parseInt(grLijst.get(i).getDatum()
-//                    + grLijst.get(i).tijd + grLijst.get(i).gewicht) + sterLijn((int) gewicht))));
-//        }
-//    }
+    public void gewichtToevoegen() {
+
+        Scanner scan = new Scanner(System.in);
+        GewichtsRegistratie gw = new GewichtsRegistratie();
+        System.out.println("Enter datum :");//tarih
+        gw.setDatum(scan.nextLine());
+        System.out.println("Enter tijd:");//saat
+        gw.setTijd(scan.nextLine());
+        System.out.println("Enter gewicht:");//kilo
+        gw.setGewicht(scan.nextDouble());
+        scan.useLocale(Locale.US);
+
+        grLijst.addGewichtRegistratie(gw);
+        System.out.println("*********************************************");
+        System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
+        System.out.println("*********************************************");
+        System.out.println("Zo staat gewicht geregistreert :\n" + gw.toString());
+
+    }
+
+    public void medicijnToevoegen() {
+
+        Scanner scan = new Scanner(System.in);
+        Medicijn m = new Medicijn();
+        System.out.println("Enter medicijn naam :");//tarih
+        m.setMedicijnNaam(scan.nextLine());
+        System.out.println("Enter medicijn soort :");//saat
+        m.setSoort(scan.nextLine());
+        System.out.println("Enter omschrijving:");//kilo
+        m.setOmschrijving(scan.nextLine());
+        System.out.println("Enter dosering");
+        m.setDosering(scan.nextLine());
+
+        mcList.addMedicijn(m);
+        System.out.println("*********************************************");
+        System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
+        System.out.println("*********************************************");
+        System.out.println("Zo staat gewicht geregistreert :\n" + m.toString());
+
+    }
+
 }
 
-    // yildizlarla kilo kaydi takip cizelgesi olusturmam lazim. Kilosuna gore yildiz consolda gozukmesi lazim. Kilosunu monitorlamak icin

@@ -33,5 +33,15 @@ public class ProfielList {
         return profielList.size();
     }
 
+    public void printAllePatienten() {
+        System.out.println("LIJST VAN ALLE PATIENTEN  ");
+        System.out.println("Nr. \tNaam\t\tAchternaam\t\tLeeftijd\tLengte\t\tGewicht\t\tBMI\t");
+        for (int i = 0; i < profielList.size(); i++) {
+            System.out.println(i+"."+"\t\t"+profielList.get(i).getVoorNaam() + " \t\t" + profielList.get(i).getAchterNaam()
+                    + "\t\t\t " + profielList.get(i).getLeeftijd() + "\t\t\t " + profielList.get(i).getLengte()
+                    + "\t\t " + profielList.get(i).getGewicht() + "\t\t " + profielList.get(i).getBmi());
+
+        }
+    }
 }
 
