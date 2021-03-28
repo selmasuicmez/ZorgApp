@@ -20,6 +20,7 @@ public class GewichtRegistraties {
         for (GewichtsRegistratie gewichtsRegistratie : lijst) {
 
             System.out.println(gewichtsRegistratie.getDatum()+"\t\t "+gewichtsRegistratie.getTijd()+" \t\t\t\t"+gewichtsRegistratie.getGewicht());
+
            // gewichtsRegistratie.printSterren();
         }
     }

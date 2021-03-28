@@ -64,12 +64,12 @@ public class GewichtsRegistratie {
         return sterren;
     }
 
-    //burada yildizlarla kilo kaydini gormek icin method
+    //////////////////////////////////////////////////////////////////////////////////////////
     public void printSterren() {
-
+//bu methodu kullanip hastanin kilosuna gore yildizlar consolda gormem lazim.Yukardaki sterLijn methodu kullanip
         System.out.println("TO DO");
     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public String toString() {
         return "GewichtsRegistratie{" +

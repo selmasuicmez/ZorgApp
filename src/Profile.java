@@ -233,15 +233,15 @@ public class Profile {
         setPasWoord(scan.nextLine());
         System.out.println("Nieuwe wachtwoord is: " + getPasWoord());
     }
-
+//hastanin butun kilo kayitlari
     public void alleGewichtRegistraties() {
         grLijst.print();
     }
-
+//hastanin butun ilaclari
     public void alleMedicaties() {
         mcList.print();
     }
-
+//kilo kaydi ekle
     public void gewichtToevoegen() {
 
         Scanner scan = new Scanner(System.in);
@@ -261,7 +261,7 @@ public class Profile {
         System.out.println("Zo staat gewicht geregistreert :\n" + gw.toString());
 
     }
-
+//hastaya ilac ekleme
     public void medicijnToevoegen() {
 
         Scanner scan = new Scanner(System.in);

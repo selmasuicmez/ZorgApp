@@ -52,7 +52,7 @@ public class ZorgApp {
     private String gebruikerNaam;//kullanici adi
     private String paswoord;// pasword
     private Profile profile;
-    private Profile patient;
+  // private Profile patient;
 
     Medicijn medicijn = new Medicijn();
 
@@ -128,22 +128,49 @@ public class ZorgApp {
         GewichtsRegistratie selma09032021 = new GewichtsRegistratie("09/3/2021", "7.00", 72.3);
         GewichtsRegistratie selma10032021 = new GewichtsRegistratie("10/3/2021", "7.00", 73.4);
         GewichtsRegistratie selma11032021 = new GewichtsRegistratie("11/3/2021", "7.00", 74.9);
-        GewichtsRegistratie selma12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 75.1);
-        GewichtsRegistratie selma13032021 = new GewichtsRegistratie("13/3/2021", "7.00", 79.3);
+        GewichtsRegistratie mevlut12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 75.1);
+        GewichtsRegistratie mevlut13032021 = new GewichtsRegistratie("13/3/2021", "7.00", 79.3);
+        GewichtsRegistratie mevlut28032021 = new GewichtsRegistratie("28/3/2021", "7.00", 85.3);
+        GewichtsRegistratie mevlut29032021 = new GewichtsRegistratie("29/3/2021", "7.00", 86.3);
+
+        GewichtsRegistratie maksud10032021 = new GewichtsRegistratie("10/3/2021", "7.00", 55.3);
+        GewichtsRegistratie maksud11032021 = new GewichtsRegistratie("11/3/2021", "7.00", 56.3);
+        GewichtsRegistratie maksud12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 57.3);
+
+        GewichtsRegistratie semiha10032021 = new GewichtsRegistratie("10/3/2021", "7.00", 40.3);
+        GewichtsRegistratie semiha11032021 = new GewichtsRegistratie("11/3/2021", "7.00", 41.3);
+        GewichtsRegistratie semiha12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 39.3);
+
+        GewichtsRegistratie ahmed10032021 = new GewichtsRegistratie("10/3/2021", "7.00", 20.3);
+        GewichtsRegistratie ahmed11032021 = new GewichtsRegistratie("11/3/2021", "7.00", 21.3);
+        GewichtsRegistratie ahmed12032021 = new GewichtsRegistratie("12/3/2021", "7.00", 22.3);
         // kilo kayitlari profile ekle
-        Selma.addGewichtRegistratie(selma13032021);
-        Selma.addGewichtRegistratie(selma12032021);
+
         Selma.addGewichtRegistratie(selma11032021);
         Selma.addGewichtRegistratie(selma10032021);
         Selma.addGewichtRegistratie(selma09032021);
         Selma.addGewichtRegistratie(selma08032021);
+        Mevlut.addGewichtRegistratie(mevlut12032021);
+        Mevlut.addGewichtRegistratie(mevlut13032021);
+        Mevlut.addGewichtRegistratie(mevlut28032021);
+        Mevlut.addGewichtRegistratie(mevlut29032021);
+        Maksud.addGewichtRegistratie(maksud10032021);
+        Maksud.addGewichtRegistratie(maksud11032021);
+        Maksud.addGewichtRegistratie(maksud12032021);
+        Semiha.addGewichtRegistratie(semiha10032021);
+        Semiha.addGewichtRegistratie(semiha11032021);
+        Semiha.addGewichtRegistratie(semiha12032021);
+        Ahmed.addGewichtRegistratie(ahmed10032021);
+        Ahmed.addGewichtRegistratie(ahmed11032021);
+        Ahmed.addGewichtRegistratie(ahmed12032021);
     }
+
     //menu sifreli giris
     public Profile inlogscherm() {
 
         do {
             profile = null;
-            patient=null;
+           //patient=null;
             System.out.println("\nWelkom in de ZorgApp, dit is het inlogscherm.\n");
             System.out.println("Wat is uw gebruikersnaam: ");
             gebruikerNaam = scan.nextLine();
@@ -177,7 +204,7 @@ public class ZorgApp {
     }
     // menu doktor
     public void menuZorgverlener(Profile profile) {
-        int choice = 0;
+        int choice;
         do {
             System.out.println();
             System.out.println("***************************************************************************************************");
@@ -194,7 +221,7 @@ public class ZorgApp {
             System.out.println("6- Om terug te keren naar hoofmenu");// inlog a geri don
 
 
-            choice = scan.nextInt();
+           choice = scan.nextInt();
 
             switch (choice) {
                 case 1:
@@ -214,10 +241,10 @@ public class ZorgApp {
                     break;
 
                 case 5: //medicijn info
-
+                    //buna gerek yok
                     break;
 
-                case 6:
+                case 6://burda hata veriyor
                     inlogscherm();
                     break;
 
