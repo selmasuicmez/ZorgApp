@@ -32,7 +32,7 @@ public class ProfielList {
     public int sizeOf() {
         return profielList.size();
     }
-
+//butun hastalari gor
     public void printAllePatienten() {
         System.out.println("LIJST VAN ALLE PATIENTEN  ");
         System.out.println("Nr. \tNaam\t\tAchternaam\t\tLeeftijd\tLengte\t\tGewicht\t\tBMI\t");

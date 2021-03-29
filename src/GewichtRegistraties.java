@@ -14,7 +14,6 @@ public class GewichtRegistraties {
 // listeyi gor
     public void print() {
         System.out.println("LIJST VAN ALLE GEWICHTREGISTRATIES  ");
-        System.out.println();
         System.out.println("Datum\t\t\t Tijd \t\t\t\tGewicht");
         System.out.println();
         for (GewichtsRegistratie gewichtsRegistratie : lijst) {
@@ -22,6 +21,7 @@ public class GewichtRegistraties {
             System.out.println(gewichtsRegistratie.getDatum()+"\t\t "+gewichtsRegistratie.getTijd()+" \t\t\t\t"+gewichtsRegistratie.getGewicht());
 
            // gewichtsRegistratie.printSterren();
+           //bu methodu cagirdigimda kilo kaydini yildizlarla konsola basmasi lazim
         }
     }
 }

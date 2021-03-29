@@ -11,18 +11,14 @@ public class GewichtsRegistratie {
     String tijd;
     double gewicht;
 
-
     GewichtsRegistratie() {
-
     }
 
     public GewichtsRegistratie(String datum, String tijd, double gewicht) {
-
         this.datum = datum;
         this.tijd = tijd;
         this.gewicht = gewicht;
     }
-
 
     public String getDatum() {
         return datum;
@@ -53,9 +49,8 @@ public class GewichtsRegistratie {
         System.out.println("Tijd " + getDatum());
         System.out.println("Gewicht " + getGewicht());
     }
-
-    //
-    public static String sterLijn(int nummerVanSterren) {
+    //yildizlarla kilo kaydi methodu
+    public static String sterLijn(double nummerVanSterren) {
 
         String sterren = "";
         for (int i = 0; i < nummerVanSterren; i++) {
@@ -64,12 +59,11 @@ public class GewichtsRegistratie {
         return sterren;
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////
     public void printSterren() {
-//bu methodu kullanip hastanin kilosuna gore yildizlar consolda gormem lazim.Yukardaki sterLijn methodu kullanip
+
         System.out.println("TO DO");
     }
-/////////////////////////////////////////////////////////////////////////////////////////////
+
     @Override
     public String toString() {
         return "GewichtsRegistratie{" +

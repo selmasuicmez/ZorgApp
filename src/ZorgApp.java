@@ -3,19 +3,23 @@ import java.util.*;
 public class ZorgApp {
     /*
     hasta doktor aplication u
+    USER STORIES
 
     DOKTOR
     **********************************************
-    butun ilaclari gormek istiyor
-    hastalarin tumunu gormek istiyor
-    bir ilacin bilgisini gormek istiyor
-    ************************************
+    aplikasyona giris yapa bilmeli
     yeni bir hasta eklemek istiyor
     hastalari tek tek bulmak istiyor
     hastalara ilac eklemek istiyor
     bir hastanin tum ilaclarini gormek istiyor
+    bir hastanin tum kilo kayitlarini gormek istiyor
+    hastaya kilo kaydi eklemek istiyor
     hastanin dosyasindan ilac silmek istiyor
-    *************************************************
+
+    Systemdeki butun ilaclari gormek istiyor
+    hastalarin tumunu gormek istiyor
+    ************************************
+
     hastanin ismini degistirmek istiyor
     hastanin soy ismini degistirmek istiyor
     hastanin yasini degistirmek istiyor
@@ -23,10 +27,8 @@ public class ZorgApp {
     hastanin kilosunu degistirmek istiyor
 
     ******************************************
-    hastanin tum kilo kayitlarini gormek istiyor
-    hastaya kilo kaydi eklemek istiyor
     hastanin bir onceki kilo kaydina gore nekadar kilo alip almadigini CIZELGE olarak consolda gormek istiyor. (Kilosuna gore yildiz consola basabiliriz)
-
+****************************************************************************************************************************
     HASTA
 
     kendi bilgilerini gormek istiyor
@@ -38,10 +40,10 @@ public class ZorgApp {
     boyunu degistirmek istiyor
     kullanici adini degistirmek istiyor
     sifresini degistirmek istiyor
-
-    BU HAFTADA
+******************************************************************************************************
     Doktor ve Hasta aplikasyonun dilini degistirebilmelidir. 3 dil secenekli seklinde olabilir
      */
+
     Scanner scan = new Scanner(System.in);
     Scanner switchChoice = new Scanner(System.in);
 
@@ -49,10 +51,8 @@ public class ZorgApp {
     private MedicijnLijst medicijnLijst = new MedicijnLijst();
     private GewichtRegistraties gewichtRegistraties= new GewichtRegistraties();
 
-    private String gebruikerNaam;//kullanici adi
-    private String paswoord;// pasword
     private Profile profile;
-  // private Profile patient;
+
 
     Medicijn medicijn = new Medicijn();
 
@@ -164,18 +164,16 @@ public class ZorgApp {
         Ahmed.addGewichtRegistratie(ahmed11032021);
         Ahmed.addGewichtRegistratie(ahmed12032021);
     }
-
     //menu sifreli giris
-    public Profile inlogscherm() {
+    public Profile inlogschermPatient() {
 
         do {
             profile = null;
-           //patient=null;
-            System.out.println("\nWelkom in de ZorgApp, dit is het inlogscherm.\n");
+            System.out.println("Welkom patient, dit is het inlogscherm.");
             System.out.println("Wat is uw gebruikersnaam: ");
-            gebruikerNaam = scan.nextLine();
+            String gebruikerNaam = scan.nextLine();
             System.out.println("Wat is uw wachtwoord: ");
-            paswoord = scan.nextLine();
+            String paswoord = scan.nextLine();
 
             for (int i = 0; i < profielList.sizeOf(); i++) {
                 if ((profielList.get(i).getGebruikersNaam().equals(gebruikerNaam) && (profielList.get(i).getPasWoord().equals(paswoord)))) {
@@ -183,25 +181,41 @@ public class ZorgApp {
                 }
             }
             if (profile == null) {
-                System.out.print("Geen goede invoer.Probeer opnieuw");
+                System.out.print("Geen profiel gevonden probeer opnieuw");
             }
         } while (profile == null);
 
         if (profile != null) {
-            String functie = profile.getFunctie();
-            switch (functie) {
+            menuPatient(profile);
 
-                case "zorgverlener":
-                    menuZorgverlener(profile);
-                    break;
-
-                case "patient":
-                    menuPatient(profile);
-                    break;
-            }
-        }
-        return profile;
+        }return  profile;
     }
+
+    public Profile inlogschermZorgverlener() {
+
+        do {
+            profile = null;
+            System.out.println("Welkom zorgverlener, dit is het inlogscherm.");
+            System.out.println("Wat is uw gebruikersnaam: ");
+            String gebruikerNaam = scan.nextLine();
+            System.out.println("Wat is uw wachtwoord: ");
+            String paswoord = scan.nextLine();
+
+            for (int i = 0; i < profielList.sizeOf(); i++) {
+                if ((profielList.get(i).getGebruikersNaam().equals(gebruikerNaam) && (profielList.get(i).getPasWoord().equals(paswoord)))) {
+                    profile = profielList.get(i);
+                }
+            }
+            if (profile == null) {
+                System.out.print("Geen profiel gevonden probeer opnieuw");
+            }
+        } while (profile == null);
+
+        if (profile != null) {
+            menuZorgverlener(profile);
+        }return  profile;
+    }
+
     // menu doktor
     public void menuZorgverlener(Profile profile) {
         int choice;
@@ -216,9 +230,8 @@ public class ZorgApp {
             System.out.println("2-  Om patient te zoeken  ");//hasta ara
             System.out.println("3-  Om alle patienten zien");//tum hastalari gor
             System.out.println("4-  Om alle medicijnen te zien");//butun ilaclari gor
-           // System.out.println("5- Om een specifieke medicijn te zoeken");//ilac bilgisi al
             System.out.println("*****************************************************************************************************");
-            System.out.println("6- Om terug te keren naar hoofmenu");// inlog a geri don
+            System.out.println("5- Om terug te keren naar hoofmenu");// inlog a geri don
 
 
            choice = scan.nextInt();
@@ -233,19 +246,14 @@ public class ZorgApp {
                     break;
 
                 case 3:
-                    profielList.printAllePatienten();
+                    profielList.printAllePatienten();//butun hastalari gor
                     break;
 
                 case 4:
                     medicijnLijst.print();//butun ilaclari gor
                     break;
 
-                case 5: //medicijn info
-                    //buna gerek yok
-                    break;
-
-                case 6://burda hata veriyor
-                    inlogscherm();
+                case 5: startScherm();//girise donus
                     break;
 
                 default:
@@ -254,6 +262,7 @@ public class ZorgApp {
             }
         } while (choice != 0);
     }
+
     //hasta ara
     private Profile zoekPatient() {
 
@@ -266,7 +275,7 @@ public class ZorgApp {
         Profile patient = profielList.get(choice);
 
         do {
-            System.out.println("Dit zijn de gegevens van: " + patient.getVoorNaam() + "\t" + patient.getAchterNaam());
+            System.out.println("Dit zijn de gegevens van: " + patient.getVoorNaam() + " " + patient.getAchterNaam());
             System.out.println("Kies een optie voor patient: ");
             System.out.println();
             System.out.println("********************** BEKIJKEN ********************************************");
@@ -280,12 +289,12 @@ public class ZorgApp {
             System.out.println(" 7. Wijzig gewicht");//hastanin kilosunu degistir
             System.out.println(" 8. Wijzig lengte");//hastanin boyunu degistir
             System.out.println("************************** TOEVOEGEN ****************************************");
-            System.out.println("10. Toevoegen medicatie");//hastanin profiline ilac ekle
-            System.out.println("11. Toevoegen gewichtregistratie");//hastanin profiline kilo kaydi ekle
+            System.out.println("9. Toevoegen medicatie");//hastanin profiline ilac ekle
+            System.out.println("10. Toevoegen gewichtregistratie");//hastanin profiline kilo kaydi ekle
             System.out.println("************************** VERWIJDEREN ****************************************");
-            System.out.println("12. Verwijder medicijn bij patiënt");//hastanin profilinden ilac sil
+            System.out.println("11. Verwijder medicijn bij patiënt");//hastanin profilinden ilac sil
             System.out.println("************************* PROGRAMMA BEEINDIGEN ********************************");
-            System.out.println("13.  Terug naar hoofmenu");//menuye don
+            System.out.println("12.  Terug naar hoofmenu");//menuye don
 
 
             int switchChoice = scan.nextInt();
@@ -323,20 +332,20 @@ public class ZorgApp {
                     patient.wijzigProfielLengte();//boy degistir
                     break;
 
-                case 10:
+                case 9:
                    patient.medicijnToevoegen();//hasta ya ilac ekle
                     break;
 
-                case 11:
+                case 10:
                     patient.gewichtToevoegen();//hastaya kilo kaydi ekle
                     break;
 
-                case 12:
+                case 11:
                     patient.verwijderMedicijn();//hastadan ilac sil
                     break;
 
-                case 13:
-                    inlogscherm();//basa don
+                case 12:
+                    startScherm();//basa don
                     break;
 
                 default:
@@ -369,7 +378,7 @@ public class ZorgApp {
 
                 case 1:
                     System.out.println("Uw persoons gegevens: ");
-                    profile.printProfiel();//bilgileri print
+                    profile.printProfiel();//bilgileri gor
                     break;
 
                 case 2:
@@ -377,7 +386,7 @@ public class ZorgApp {
                     break;
 
                 case 3:
-                    profile.alleGewichtRegistraties();// Hastanin kilo kayitlarini gor
+                    profile.alleGewichtRegistraties();// Hastanin tum kilo kayitlarini gor
                     break;
 
                 case 4:
@@ -401,7 +410,7 @@ public class ZorgApp {
                     break;
 
                 case 9: // inlog menu ye don
-                    inlogscherm();
+                    startScherm();
                     break;
 
                 default:
@@ -409,6 +418,32 @@ public class ZorgApp {
             }
         } while (choice != 0);
         return profile;
+    }
+
+    public void startScherm() {
+        int choice;
+        do {
+            System.out.println("WELKOM BIJ DE ZORGAPP");
+            System.out.println();
+            System.out.println("Ben je zorgverlener toets 1 ");
+            System.out.println("Ben je patient toets 2 ");
+
+            choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    inlogschermZorgverlener();
+                    break;
+
+                case 2:
+                    inlogschermPatient();
+                    break;
+
+                default:
+                    System.out.println("geen goede invoer probeer opnieuw");
+
+            }
+        } while (choice != 0);
     }
     //yeni hasta ekle
     void registerPatient() {

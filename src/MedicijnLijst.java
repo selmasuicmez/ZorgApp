@@ -5,19 +5,16 @@ public class MedicijnLijst {
     // Butun ilaclarin listesi
     private  ArrayList<Medicijn> lijst = new ArrayList<>();
 
-
     MedicijnLijst() {
     }
 
     public void addMedicijn(Medicijn medicijn){
         lijst.add(medicijn);
     }
-
     //listeden ilac sil
     public void verwijderMedicijn(int index) {
             lijst.remove(index);
     }
-
 // butun ilaclari liste seklinde gor
     public void print() {
         System.out.println("LIJST VAN ALLE MEDICIJNEN  ");
@@ -26,7 +23,6 @@ public class MedicijnLijst {
         for (int i=0;i<lijst.size();i++){
             System.out.println(i+". "+lijst.get(i).getMedicijnNaam()+"\t\t "+lijst.get(i).getSoort()+"\t\t\t "+lijst.get(i).getOmschrijving()+"\t\t\t\t\t\t "+lijst.get(i).getDosering());
         }
-
     }
 }
 

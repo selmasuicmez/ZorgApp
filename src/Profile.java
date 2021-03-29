@@ -1,6 +1,4 @@
 
-import com.sun.java.swing.plaf.windows.WindowsDesktopIconUI;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -14,14 +12,10 @@ public class Profile {
     private double gewicht;//kilo
     private double lengte;//boy
     private double Bmi;//bmi
-
-
     private MedicijnLijst mcList;
     private GewichtRegistraties grLijst;
 
     Scanner scan = new Scanner(System.in);
-
-
     //constructor
     public Profile(String gebruikersNaam, String paswoord, String functie, String voorNaam, String achterNaam, int leeftijd, double gewicht, double lengte) {
         this.gebruikersNaam = gebruikersNaam;
@@ -36,7 +30,6 @@ public class Profile {
         grLijst = new GewichtRegistraties();
     }
 
-
     public Profile() {
 
     }
@@ -45,8 +38,6 @@ public class Profile {
     public void addMedicijn(Medicijn mc) {
         mcList.addMedicijn(mc);
     }
-
-
     //hastanin ilac listesini gor
     public MedicijnLijst getMcListPatient() {
         return mcList;
@@ -56,7 +47,6 @@ public class Profile {
     public void addGewichtRegistratie(GewichtsRegistratie gewichtsRegistratie) {
         grLijst.addGewichtRegistratie(gewichtsRegistratie);
     }
-
     //// hastanin ağırlık ölçüm kayitlarini gor
     public GewichtRegistraties getGrPatientLijst() {
         return grLijst;
@@ -85,52 +75,42 @@ public class Profile {
                 ", grLijst=" + grLijst +
                 '}';
     }
-
     // isim al
     public String getVoorNaam() {
         return voorNaam;
     }
-
     //isim set et
     public void setVoorNaam(String voorNaam) {
         this.voorNaam = voorNaam;
     }
-
     //soyisim al
     public String getAchterNaam() {
         return achterNaam;
     }
-
     //soyisim set et
     public void setAchterNaam(String achterNaam) {
         this.achterNaam = achterNaam;
     }
-
     //yas al
     public int getLeeftijd() {
         return leeftijd;
     }
-
     //yas set et
     public void setLeeftijd(int leeftijd) {
         this.leeftijd = leeftijd;
     }
-
     //kilo al
     public double getGewicht() {
         return gewicht;
     }
-
     //kilo set et
     public void setGewicht(double gewicht) {
         this.gewicht = gewicht;
     }
-
     // boy al
     public double getLengte() {
         return lengte;
     }
-
     // boy set et
     public void setLengte(double lengte) {
         this.lengte = Math.round(lengte);
@@ -141,37 +121,30 @@ public class Profile {
         Bmi = Math.round(gewicht / (lengte * lengte));
         return Bmi;
     }
-
     //kulanici adi al
     public String getGebruikersNaam() {
         return gebruikersNaam;
     }
-
     //kullanici adi set
     public void setGebruikersNaam(String gebruikersNaam) {
         this.gebruikersNaam = gebruikersNaam;
     }
-
     //pasword al
     public String getPasWoord() {
         return pasWoord;
     }
-
     //pasword set et
     public void setPasWoord(String pasWoord) {
         this.pasWoord = pasWoord;
     }
-
     // hasta veya doktoru profillerde ayirt etmek icin  function( patient veya zorgverlener olarak constructora ekliyor)
     public String getFunctie() {
         return functie;
     }
-
     //function set et
     public void setFunctie(String functie) {
         this.functie = functie;
     }
-
     // profil yazdir
     public void printProfiel() {
 
@@ -181,52 +154,43 @@ public class Profile {
         System.out.println("Lengte :" + lengte);
         System.out.println("Gewicht:" + gewicht);
         System.out.println("BMI:" + getBmi());
-
     }
-
     //isim degistir
     public void wijzigProfielVoornaam() {
         System.out.println("Enter nieuwe voornaam: ");
         setVoorNaam(scan.nextLine());
         System.out.print("Nieuwe voornaam is: " + getVoorNaam());
     }
-
     //soy isim degistir
     public void wijzigProfielAchternaam() {
         System.out.print("Enter nieuwe achternaam: ");
         setAchterNaam(scan.nextLine());
         System.out.print("Nieuwe achternaam is: " + getAchterNaam());
     }
-
     //yas degistir
     public void wijzigProfielLeeftijd() {
         System.out.println("Enter nieuwe leeftijd: ");
         setLeeftijd(scan.nextInt());
         System.out.println("Nieuwe leeftijd is: " + getLeeftijd());
     }
-
     //boy degistir
     public void wijzigProfielLengte() {
         System.out.print("Enter nieuwe lengte: ");
         setLengte(scan.nextDouble());
         System.out.println("Uw lengte is: " + getLengte());
     }
-
     //kilo degistir
     public void wijzigProfielGewicht() {
         System.out.println("Enter nieuwe gewicht: ");
         setGewicht(scan.nextDouble());
         System.out.println("Nieuwe gewicht is:" + getGewicht());
     }
-
     //kullanici adi degistir
-    public void wijzigProfielGebruikerNaam() //Username bewerken
-    {
+    public void wijzigProfielGebruikerNaam(){ //Username bewerken
         System.out.println("Enter nieuwe gebruikersnaam: ");
         setGebruikersNaam(scan.nextLine());
         System.out.println("Nieuwe gebruikersnaam is: " + getGebruikersNaam());
     }
-
     //sifre degistir
     public void wijzigProfielPaswoord() {
         System.out.println("Enter nieuwe wachtwoord: ");
@@ -241,7 +205,7 @@ public class Profile {
     public void alleMedicaties() {
         mcList.print();
     }
-//kilo kaydi ekle
+//hastaya kilo kaydi ekle
     public void gewichtToevoegen() {
 
         Scanner scan = new Scanner(System.in);
@@ -259,7 +223,6 @@ public class Profile {
         System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
         System.out.println("*********************************************");
         System.out.println("Zo staat gewicht geregistreert :\n" + gw.toString());
-
     }
 //hastaya ilac ekleme
     public void medicijnToevoegen() {
@@ -280,8 +243,6 @@ public class Profile {
         System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
         System.out.println("*********************************************");
         System.out.println("Zo staat gewicht geregistreert :\n" + m.toString());
-
     }
-
 }
 
