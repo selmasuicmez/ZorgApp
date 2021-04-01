@@ -3,21 +3,20 @@ import java.io.IOException;
 import java.util.*;
 
 public class Profile {
-    private String gebruikersNaam;//kullanici adi
-    private String pasWoord;//pasword
-    private String functie;//function(Hasta veya doktormu)
-    private String voorNaam;//isim
-    private String achterNaam;//soyisim
-    private int leeftijd;//yas
-    private double gewicht;//kilo
-    private double lengte;//boy
-    private double Bmi;//bmi
+    private String gebruikersNaam;
+    private String pasWoord;
+    private String functie;
+    private String voorNaam;
+    private String achterNaam;
+    private int leeftijd;
+    private double gewicht;
+    private double lengte;
+    private double Bmi;
     private MedicijnLijst mcList;
     private GewichtRegistraties grLijst;
-
     Scanner scan = new Scanner(System.in);
-    //constructor
-    public Profile(String gebruikersNaam, String paswoord, String functie, String voorNaam, String achterNaam, int leeftijd, double gewicht, double lengte) {
+
+    public Profile(String gebruikersNaam, String paswoord, String voorNaam, String achterNaam, int leeftijd, double gewicht, double lengte) {
         this.gebruikersNaam = gebruikersNaam;
         this.pasWoord = paswoord;
         this.functie = functie;
@@ -31,121 +30,90 @@ public class Profile {
     }
 
     public Profile() {
-
     }
 
-    //hastanin ilac listesine  ilac ekle
     public void addMedicijn(Medicijn mc) {
         mcList.addMedicijn(mc);
     }
-    //hastanin ilac listesini gor
-    public MedicijnLijst getMcListPatient() {
-        return mcList;
-    }
 
-    // hastanin ağırlık ölçüm kaydi
     public void addGewichtRegistratie(GewichtsRegistratie gewichtsRegistratie) {
         grLijst.addGewichtRegistratie(gewichtsRegistratie);
     }
-    //// hastanin ağırlık ölçüm kayitlarini gor
-    public GewichtRegistraties getGrPatientLijst() {
-        return grLijst;
-    }
 
-    // hastanin ilac listesinden ilac sil
     public void verwijderMedicijn() {
         Scanner scan = new Scanner(System.in);
         mcList.print();
         System.out.println("Geef nummer van medicijn die je wilt verwijderen");
         int index = scan.nextInt();
-
         mcList.verwijderMedicijn(index);
     }
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "voorNaam='" + voorNaam + '\'' +
-                ", achterNaam='" + achterNaam + '\'' +
-                ", leeftijd=" + leeftijd +
-                ", gewicht=" + gewicht +
-                ", lengte=" + lengte +
-                ", Bmi=" + Bmi +
-                ", mcList=" + mcList +
-                ", grLijst=" + grLijst +
-                '}';
+        return "Profile{voorNaam='" + this.voorNaam + '\'' + ", achterNaam='" + this.achterNaam + '\'' + ", leeftijd=" + this.leeftijd + ", gewicht=" + this.gewicht + ", lengte=" + this.lengte + ", Bmi=" + this.Bmi + ", mcList=" + this.mcList + ", grLijst=" + this.grLijst + '}';
     }
-    // isim al
+
     public String getVoorNaam() {
         return voorNaam;
     }
-    //isim set et
+
     public void setVoorNaam(String voorNaam) {
         this.voorNaam = voorNaam;
     }
-    //soyisim al
+
     public String getAchterNaam() {
         return achterNaam;
     }
-    //soyisim set et
+
     public void setAchterNaam(String achterNaam) {
         this.achterNaam = achterNaam;
     }
-    //yas al
+
     public int getLeeftijd() {
         return leeftijd;
     }
-    //yas set et
+
     public void setLeeftijd(int leeftijd) {
         this.leeftijd = leeftijd;
     }
-    //kilo al
+
     public double getGewicht() {
         return gewicht;
     }
-    //kilo set et
+
     public void setGewicht(double gewicht) {
         this.gewicht = gewicht;
     }
-    // boy al
+
     public double getLengte() {
         return lengte;
     }
-    // boy set et
+
     public void setLengte(double lengte) {
         this.lengte = Math.round(lengte);
     }
 
-    //bmi hesapla
     public double getBmi() {
         Bmi = Math.round(gewicht / (lengte * lengte));
         return Bmi;
     }
-    //kulanici adi al
+
     public String getGebruikersNaam() {
         return gebruikersNaam;
     }
-    //kullanici adi set
+
     public void setGebruikersNaam(String gebruikersNaam) {
         this.gebruikersNaam = gebruikersNaam;
     }
-    //pasword al
+
     public String getPasWoord() {
         return pasWoord;
     }
-    //pasword set et
+
     public void setPasWoord(String pasWoord) {
         this.pasWoord = pasWoord;
     }
-    // hasta veya doktoru profillerde ayirt etmek icin  function( patient veya zorgverlener olarak constructora ekliyor)
-    public String getFunctie() {
-        return functie;
-    }
-    //function set et
-    public void setFunctie(String functie) {
-        this.functie = functie;
-    }
-    // profil yazdir
+
     public void printProfiel() {
 
         System.out.println("Voornaam: " + voorNaam);
@@ -155,78 +123,80 @@ public class Profile {
         System.out.println("Gewicht:" + gewicht);
         System.out.println("BMI:" + getBmi());
     }
-    //isim degistir
+
     public void wijzigProfielVoornaam() {
         System.out.println("Enter nieuwe voornaam: ");
         setVoorNaam(scan.nextLine());
         System.out.print("Nieuwe voornaam is: " + getVoorNaam());
     }
-    //soy isim degistir
+
     public void wijzigProfielAchternaam() {
         System.out.print("Enter nieuwe achternaam: ");
         setAchterNaam(scan.nextLine());
         System.out.print("Nieuwe achternaam is: " + getAchterNaam());
     }
-    //yas degistir
+
     public void wijzigProfielLeeftijd() {
         System.out.println("Enter nieuwe leeftijd: ");
         setLeeftijd(scan.nextInt());
         System.out.println("Nieuwe leeftijd is: " + getLeeftijd());
     }
-    //boy degistir
+
     public void wijzigProfielLengte() {
         System.out.print("Enter nieuwe lengte: ");
         setLengte(scan.nextDouble());
         System.out.println("Uw lengte is: " + getLengte());
     }
-    //kilo degistir
+
     public void wijzigProfielGewicht() {
         System.out.println("Enter nieuwe gewicht: ");
         setGewicht(scan.nextDouble());
         System.out.println("Nieuwe gewicht is:" + getGewicht());
     }
-    //kullanici adi degistir
+
     public void wijzigProfielGebruikerNaam(){ //Username bewerken
         System.out.println("Enter nieuwe gebruikersnaam: ");
         setGebruikersNaam(scan.nextLine());
         System.out.println("Nieuwe gebruikersnaam is: " + getGebruikersNaam());
     }
-    //sifre degistir
+
     public void wijzigProfielPaswoord() {
         System.out.println("Enter nieuwe wachtwoord: ");
         setPasWoord(scan.nextLine());
         System.out.println("Nieuwe wachtwoord is: " + getPasWoord());
     }
-//hastanin butun kilo kayitlari
+
     public void alleGewichtRegistraties() {
         grLijst.print();
     }
-//hastanin butun ilaclari
+
     public void alleMedicaties() {
         mcList.print();
     }
-//hastaya kilo kaydi ekle
+
     public void gewichtToevoegen() {
 
         Scanner scan = new Scanner(System.in);
         GewichtsRegistratie gw = new GewichtsRegistratie();
-        System.out.println("Enter datum :");//tarih
+        System.out.println("Enter datum in formaat DD/MM/JJJ");
         gw.setDatum(scan.nextLine());
-        System.out.println("Enter tijd:");//saat
+        System.out.println("Enter tijd in formaat UU:MM");
         gw.setTijd(scan.nextLine());
-        System.out.println("Enter gewicht:");//kilo
-        gw.setGewicht(scan.nextDouble());
-        scan.useLocale(Locale.US);
-
+        System.out.println("Enter gewicht in 1 decimaal achter komma");
+        try {
+            gw.setGewicht(scan.nextDouble());
+            scan.useLocale(Locale.US);
+        }catch(InputMismatchException e){
+            System.out.println("Geen goede invoer van gewicht. Schrijf je gewicht met komma. Niet met punt (Voorbeeld 70,6 ) Probeer opnieuw");
+        }
         grLijst.addGewichtRegistratie(gw);
         System.out.println("*********************************************");
         System.out.println("*******GEWICHT SUCCESFULL AANGEMAAKT*********");
         System.out.println("*********************************************");
         System.out.println("Zo staat gewicht geregistreert :\n" + gw.toString());
     }
-//hastaya ilac ekleme
-    public void medicijnToevoegen() {
 
+    public void medicijnToevoegen() {
         Scanner scan = new Scanner(System.in);
         Medicijn m = new Medicijn();
         System.out.println("Enter medicijn naam :");//tarih

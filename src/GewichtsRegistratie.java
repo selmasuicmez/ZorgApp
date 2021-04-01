@@ -1,6 +1,3 @@
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 import java.util.Scanner;
@@ -45,12 +42,12 @@ public class GewichtsRegistratie {
     }
 
     public void printInfo() {
-        System.out.println("Datum :" + getDatum());
-        System.out.println("Tijd " + getDatum());
-        System.out.println("Gewicht " + getGewicht());
+        System.out.println("Datum :" + this.getDatum());
+        System.out.println("Tijd " + this.getDatum());
+        System.out.println("Gewicht " +this.getGewicht());
     }
-    //yildizlarla kilo kaydi methodu
-    public static String sterLijn(double nummerVanSterren) {
+
+    public String sterLijn(double nummerVanSterren) {
 
         String sterren = "";
         for (int i = 0; i < nummerVanSterren; i++) {
@@ -60,8 +57,7 @@ public class GewichtsRegistratie {
     }
 
     public void printSterren() {
-
-        System.out.println("TO DO");
+        System.out.println(sterLijn(gewicht*0.50));
     }
 
     @Override

@@ -5,7 +5,6 @@ public class Program  {
     private ZorgApp zorgApp;
 
     public Program(){
-
     }
 
     public static void main(String[] args) throws IOException {
@@ -14,6 +13,5 @@ public class Program  {
 
         zorgApp.startScherm();
 
-
-    }
+        }
     }

@@ -6,9 +6,7 @@ public class Medicijn {
     String soort;//cesit
     String dosering;// doz
 
-
     Medicijn() {
-
     }
 
     public Medicijn(String medicijnNaam, String omschrijving, String soort, String dosering) {
